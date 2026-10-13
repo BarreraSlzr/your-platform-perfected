@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DiscoverRouteImport } from './routes/discover'
 import { Route as PlacesRouteImport } from './routes/places'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as RewardsRouteImport } from './routes/rewards'
@@ -18,6 +19,11 @@ import { Route as TicketsRouteImport } from './routes/tickets'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiscoverRoute = DiscoverRouteImport.update({
+  id: '/discover',
+  path: '/discover',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PlacesRoute = PlacesRouteImport.update({
@@ -43,6 +49,7 @@ const TicketsRoute = TicketsRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/discover': typeof DiscoverRoute
   '/places': typeof PlacesRoute
   '/profile': typeof ProfileRoute
   '/rewards': typeof RewardsRoute
@@ -50,6 +57,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/discover': typeof DiscoverRoute
   '/places': typeof PlacesRoute
   '/profile': typeof ProfileRoute
   '/rewards': typeof RewardsRoute
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/discover': typeof DiscoverRoute
   '/places': typeof PlacesRoute
   '/profile': typeof ProfileRoute
   '/rewards': typeof RewardsRoute
@@ -65,14 +74,23 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/places' | '/profile' | '/rewards' | '/tickets'
+  fullPaths:
+    '/' | '/discover' | '/places' | '/profile' | '/rewards' | '/tickets'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/places' | '/profile' | '/rewards' | '/tickets'
-  id: '__root__' | '/' | '/places' | '/profile' | '/rewards' | '/tickets'
+  to: '/' | '/discover' | '/places' | '/profile' | '/rewards' | '/tickets'
+  id:
+    | '__root__'
+    | '/'
+    | '/discover'
+    | '/places'
+    | '/profile'
+    | '/rewards'
+    | '/tickets'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DiscoverRoute: typeof DiscoverRoute
   PlacesRoute: typeof PlacesRoute
   ProfileRoute: typeof ProfileRoute
   RewardsRoute: typeof RewardsRoute
@@ -86,6 +104,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/discover': {
+      id: '/discover'
+      path: '/discover'
+      fullPath: '/discover'
+      preLoaderRoute: typeof DiscoverRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/places': {
@@ -121,6 +146,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DiscoverRoute: DiscoverRoute,
   PlacesRoute: PlacesRoute,
   ProfileRoute: ProfileRoute,
   RewardsRoute: RewardsRoute,
