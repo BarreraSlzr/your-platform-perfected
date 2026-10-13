@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router'
-import { useState, type ReactNode } from 'react'
-import { ArrowDownToLine, ArrowRight, Bell, Check, CheckCheck, ChevronRight, Coffee, Compass, Gift, Heart, Home, Link2, MapPin, Plus, ShieldCheck, Sparkles, Ticket, User, Wallet, Globe, LogOut, Leaf } from 'lucide-react'
+import { useState } from 'react'
+import { ArrowDownToLine, ArrowRight, Bell, Check, CheckCheck, ChevronRight, Coffee, Compass, Gift, Heart, Home, Link2, MapPin, Plus, ShieldCheck, Ticket, User, Wallet, Globe, Leaf } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog'
 import { places, tickets, type BuyerTicket } from './buyer-data'
