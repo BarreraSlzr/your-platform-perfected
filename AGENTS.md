@@ -13,3 +13,4 @@
 - Keep the buyer prototype in a shared presentation module with separate content routes, so navigation has real URLs and consistent personal-space chrome.
 - Keep illustrative buyer data in a browser-safe module; do not imply identity verification, ticket claiming, or live rewards without connected services.
 - Define visual roles in the global semantic design system, so all buyer views and controls share a consistent theme.
+- AI recommendations run in a server function that picks only from a browser-safe catalog by id, so the model can't invent events or places.
